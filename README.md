@@ -8,3 +8,7 @@ Linear Interpolation: Located in EnemyColorChanger.cs. Uses Color.Lerp to smooth
 Particle Effect: Attached to the Ghost prefab. The emission rate is also Lerped in EnemyColorChanger.cs so the red cloud gets thicker as you get closer.
 
 Sound Effect: Located in the bathroom. Uses an invisible Box Collider and AudioTrigger.cs to play a sound when the player walks through it.
+
+Second Sound Effect: Located in the first two doorways that progress you through the game, gives a buzzing sound downloaded using a box collider and another audio trigger. 
+
+Second Particle Effect: Attached to the gargoyles that is at a fixed rate 
