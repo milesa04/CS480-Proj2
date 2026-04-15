@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AudioTrigger : MonoBehaviour
 {
 
+    [FormerlySerializedAs("spookySound")]
     public AudioSource showerSound;
     
     public Transform player;
@@ -14,7 +16,7 @@ public class AudioTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
   
-        if (other.transform == player && !m_HasPlayed)
+        if (other.transform == player && !m_HasPlayed && showerSound != null)
         {
             showerSound.Play();
             m_HasPlayed = true;

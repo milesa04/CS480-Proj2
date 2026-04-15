@@ -1455,8 +1455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81a417f63c7a4a6ebfcb2a1e6909b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioTrigger
-  showerSound: {fileID: 0}
-  player: {fileID: 0}
+  showerSound: {fileID: 1295687705}
+  player: {fileID: 2008973354732098957}
 --- !u!1 &1317648133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
