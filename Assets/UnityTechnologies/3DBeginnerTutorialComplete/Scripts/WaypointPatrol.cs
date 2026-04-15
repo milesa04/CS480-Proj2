@@ -3,52 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WaypointPatrol : MonoBehaviour
+namespace StealthGame
 {
-    public NavMeshAgent navMeshAgent;
-    public Transform[] waypoints;
-    
-    [Tooltip("Drag JohnLemon here so the ghost knows when he is looking!")]
-    public Transform player;
-
-    int m_CurrentWaypointIndex;
-
-    void Start ()
+    public class WaypointPatrol : MonoBehaviour
     {
-        navMeshAgent.SetDestination (waypoints[0].position);
+        public float moveSpeed = 1.0f;
+        public Transform[] waypoints;
+
+        private Rigidbody m_RigidBody;
+        int m_CurrentWaypointIndex;
+
+        void Start ()
+        {
+            m_RigidBody = GetComponent<Rigidbody>();
+        }
+
+        void FixedUpdate ()
+        {
+            Transform currentWaypoint = waypoints[m_CurrentWaypointIndex];
+            Vector3 currentToTarget = currentWaypoint.position - m_RigidBody.position;
+
+            if (currentToTarget.magnitude < 0.1f)
+            {
+                //very close to the waypoint, get to the next waypoint
+                m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            }
         
-        if (player == null)
-        {
-            player = FindFirstObjectByType<PlayerMovement>().transform;
-        }
-    }
-
-    void Update ()
-    {
-        if (player != null)
-        {
-            //dot product stuff
-            Vector3 directionToGhost = (transform.position - player.position).normalized;
-            
-            Vector3 playerForward = player.forward;
-            
-            float dotProduct = Vector3.Dot(playerForward, directionToGhost);
-            
-
-            if (dotProduct > 0.5f)
-            {
-                navMeshAgent.isStopped = true;
-            }
-            else
-            {
-                navMeshAgent.isStopped = false; 
-            }
-        }
-
-        if(navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-        {
-            m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-            navMeshAgent.SetDestination (waypoints[m_CurrentWaypointIndex].position);
+            //find the rotation to orient the rigidbody toward the waypoint
+            //This will be a sharp change toward that direction, this could be made more gradual if wanted by only rotating
+            //at a given speed.
+            Quaternion forwardRotation = Quaternion.LookRotation(currentToTarget);
+            m_RigidBody.MoveRotation(forwardRotation);
+        
+            //move toward the waypoint at the set speed
+            //currentToTarget is normalized before multiplying by speed because we only want the direction and not the length
+            m_RigidBody.MovePosition(m_RigidBody.position + currentToTarget.normalized * moveSpeed * Time.deltaTime);
         }
     }
 }

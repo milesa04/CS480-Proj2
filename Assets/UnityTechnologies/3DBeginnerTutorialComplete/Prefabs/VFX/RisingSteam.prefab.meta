@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: efe021d4c307b5449b8121d46791cf95
-NativeFormatImporter:
+guid: 9edab173a51e68a4eb43c77f998d4a9a
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/UnityTechnologies/3DBeginnerTutorialComplete/Prefabs/VFX/RisingSteam.prefab
+  uploadId: 853928

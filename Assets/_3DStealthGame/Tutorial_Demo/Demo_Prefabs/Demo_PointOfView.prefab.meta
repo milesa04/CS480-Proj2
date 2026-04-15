@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f8c5e5b0acbf1644586a49405767c31b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Tutorial_Demo/Demo_Prefabs/Demo_PointOfView.prefab
+  uploadId: 853928

@@ -86,3 +86,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/UnityTechnologies/3DBeginnerTutorialComplete/Textures/BathRoom/Sink_Occlusion.tif
+  uploadId: 853928

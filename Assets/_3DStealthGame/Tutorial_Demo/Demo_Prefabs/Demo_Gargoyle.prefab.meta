@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9f961c77db8f111469b1c35390271960
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Tutorial_Demo/Demo_Prefabs/Demo_Gargoyle.prefab
+  uploadId: 853928

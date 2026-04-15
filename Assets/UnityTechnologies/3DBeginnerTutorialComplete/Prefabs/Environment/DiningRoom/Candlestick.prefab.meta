@@ -6,3 +6,10 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/UnityTechnologies/3DBeginnerTutorialComplete/Prefabs/Environment/DiningRoom/Candlestick.prefab
+  uploadId: 853928

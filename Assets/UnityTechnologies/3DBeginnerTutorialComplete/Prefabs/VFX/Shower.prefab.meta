@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: 3d19250bdd4e0df4c8da855e85a8d70b
-NativeFormatImporter:
+guid: 9cb180f99b3d4e14aaa5b25ef7a59df1
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/UnityTechnologies/3DBeginnerTutorialComplete/Prefabs/VFX/Shower.prefab
+  uploadId: 853928

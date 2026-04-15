@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0b9f79b9b79757c47abd6f883d991b2e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Tutorial_Demo/Demo_Prefabs/Demo_Ghost.prefab
+  uploadId: 853928

@@ -1,56 +1,88 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+namespace StealthGame
 {
-    public float turnSpeed = 20f;
-
-    Animator m_Animator;
-    Rigidbody m_Rigidbody;
-    AudioSource m_AudioSource;
-    Vector3 m_Movement;
-    Quaternion m_Rotation = Quaternion.identity;
-
-    void Start ()
+    public class PlayerMovement : MonoBehaviour
     {
-        m_Animator = GetComponent<Animator> ();
-        m_Rigidbody = GetComponent<Rigidbody> ();
-        m_AudioSource = GetComponent<AudioSource> ();
-    }
+        public InputAction MoveAction;
+        public ParticleSystem walkDust;
 
-    void FixedUpdate ()
-    {
-        float horizontal = Input.GetAxis ("Horizontal");
-        float vertical = Input.GetAxis ("Vertical");
-        
-        m_Movement.Set(horizontal, 0f, vertical);
-        m_Movement.Normalize ();
+        public float walkSpeed = 1.0f;
+        public float turnSpeed = 20f;
 
-        bool hasHorizontalInput = !Mathf.Approximately (horizontal, 0f);
-        bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
-        bool isWalking = hasHorizontalInput || hasVerticalInput;
-        m_Animator.SetBool ("IsWalking", isWalking);
-        
-        if (isWalking)
+        Animator m_Animator;
+        Rigidbody m_Rigidbody;
+        AudioSource m_AudioSource;
+        Vector3 m_Movement;
+        Quaternion m_Rotation = Quaternion.identity;
+    
+        // DEMO
+        private List<string> m_OwnedKeys = new();
+
+        void Start ()
         {
-            if (!m_AudioSource.isPlaying)
+            m_Animator = GetComponent<Animator> ();
+            m_Rigidbody = GetComponent<Rigidbody> ();
+            m_AudioSource = GetComponent<AudioSource> ();
+        
+            MoveAction.Enable();
+        }
+
+        void FixedUpdate ()
+        {
+            var pos = MoveAction.ReadValue<Vector2>();
+        
+            float horizontal = pos.x;
+            float vertical = pos.y;
+        
+            m_Movement.Set(horizontal, 0f, vertical);
+            m_Movement.Normalize ();
+
+            bool hasHorizontalInput = !Mathf.Approximately (horizontal, 0f);
+            bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
+            bool isWalking = hasHorizontalInput || hasVerticalInput;
+            m_Animator.SetBool ("IsWalking", isWalking);
+        
+            if (isWalking)
             {
-                m_AudioSource.Play();
+                if (!m_AudioSource.isPlaying)
+                {
+                    m_AudioSource.Play();
+                }
+
+                if (walkDust != null && !walkDust.isPlaying)
+                {
+                    walkDust.Play();
+                }
             }
+            else
+            {
+                m_AudioSource.Stop ();
+
+                if (walkDust != null && walkDust.isPlaying)
+                {
+                    walkDust.Stop();
+                }
+            }
+
+            Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
+            m_Rotation = Quaternion.LookRotation (desiredForward);
+        
+            m_Rigidbody.MoveRotation (m_Rotation);
+            m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * walkSpeed * Time.deltaTime);
         }
-        else
+
+        public void AddKey(string keyName)
         {
-            m_AudioSource.Stop ();
+            m_OwnedKeys.Add(keyName);
         }
 
-        Vector3 desiredForward = Vector3.RotateTowards (transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
-        m_Rotation = Quaternion.LookRotation (desiredForward);
-    }
-
-    void OnAnimatorMove ()
-    {
-        m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
-        m_Rigidbody.MoveRotation (m_Rotation);
+        public bool OwnKey(string keyName)
+        {
+            return m_OwnedKeys.Contains(keyName);
+        }
     }
 }

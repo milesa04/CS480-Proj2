@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 645dbff172b0d5041b6ec18da5b2768b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/UnityTechnologies/3DBeginnerTutorialComplete/Materials/VFX/Skybox
+    2.mat
+  uploadId: 853928
